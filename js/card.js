@@ -23,7 +23,7 @@ $(document).ready(function() {
     var totalImage = 40;
     var numDeck = 5;
     var cardNumber = [];
-    var randNum, matchCount;
+    var randNum, matchCount=0;
     var i, image, curSelCard, prevSelCard;
     
     $backImage.src = $deckImageNode[0].getAttribute("src");
@@ -54,11 +54,27 @@ $(document).ready(function() {
                 showDeckImage(2,cardNumber[curSelCard]);
                 if (cardNumber[prevSelCard] == cardNumber[curSelCard]){
                     //show thumnail card , remove link, and increase match count
-                    showCard(prevSelCard);
-                    showCard(curSelCard);
+                    cardindex = cardNumber[prevSelCard];
+                    image = imageCache[cardindex];
+                    showCard(prevSelCard, image);
+                    
+                    cardindex = cardNumber[curSelCard];
+                    image = imageCache[cardindex];
+                    showCard(curSelCard, image);
+                    
+                    $(this).off("click");
+                    $(links[prevSelCard]).off("click");
+                    
+                    $captionNode.html("Great!");
                     matchCount++;
+                    prevSelCard = null;
+                    if (matchCount == numDeck){
+                        $('#myModal').find('p').html('Total time collapsed is '+$('#timer').text().substring(6,14));
+                        $('#myModal').modal('toggle');
+                    }
                     
                 } else {
+                    $captionNode.html("Oops!");
                     prevSelCard = null;
                     //show back cover after 500ms
                     setTimeout(function(){showDeckImage(0,0);}, 500);
@@ -68,9 +84,8 @@ $(document).ready(function() {
     }
     
     
-    /************************************************************************************/
+/******************************************************************************************/
     function loadCard() {
-        matchCount = 0;
         //Make 5 random from 40 and store at array with two
         for (i = 0; i < numDeck; i++){
             do {
@@ -80,7 +95,7 @@ $(document).ready(function() {
             cardNumber[i+numDeck] = randNum;
         }
         //shuffle array
-        shuffleNum(numDeck*2)
+        shuffleNum(numDeck*2);
     }
     
     function checkDuplcate(count,randNum )
@@ -104,9 +119,7 @@ $(document).ready(function() {
     
     //input index will be user selected index
     //will remove <a> to prevent user selection
-    function showCard(index) {
-        cardindex = cardNumber[index];
-        image = imageCache[cardindex];
+    function showCard(index,image) {
         thumbImages[index].setAttribute('src', image.src);
         thumbImages[index].setAttribute('alt', image.title);
     }
@@ -128,72 +141,26 @@ $(document).ready(function() {
             $deckImageNode[1].setAttribute('alt', image.title);
         }
     }
+    
+    $('#shuffle').on('click', function(e) {
+        e.preventDefault();
+        location.reload();
+    });
+    
+    $('#myModal').on('hidden.bs.modal', function (e) {
+        e.preventDefault();
+        location.reload();
+    });
+
     function pretty_time_string(num) {
      return ( num < 10 ? "0" : "" ) + num;
     }
-
     var start = new Date;    
     setInterval(function() {
         var seconds = Math.floor((new Date - start) / 1000);   
         seconds = pretty_time_string(seconds);
         var currentTimeString = "Timer: " + seconds + " secs";
-        $('.timer').text(currentTimeString);
+        $('#timer').text(currentTimeString);
     ``}, 1000);
-/*    
-    
-  //If user select reset, reload card again.
-  for(i = 0; i < $(totalImage); i++){
-    linkNode = links[i];
-    
-    $(linkNode).on('click', function(e) {
-      e.preventDefault();
-      imageCounter = $(this).parent().index();
-      swapImage(imageCounter);
-    });
-
-  }
-
-  var imageArray = [];
-  for(i = 0; i < links.length; i++){
-    linkNode = links[i];
-  $("img").each(function(){
-  imageArray.push($(this).attr("src"));
-  idx++;
-  });   
-  var idxRAND = Math.floor(imageArray.length * Math.random());
-    }
-    
-    
-
-  function showTimer(count){
-      //count timer
-  }
-  function swapImage(count) {
-    image = imageCache[count];
-
-    $imageNode.attr('src', image.src);
-    $imageNode.attr('alt', image.title);
-    $captionNode.html(image.title);
-  }
-
-  $('#reset').on('click', function(e) {
-    e.preventDefault();
-    if(--imageCounter < 0) {
-      imageCounter = imageCache.length - 1;
-    }
-    swapImage(imageCounter);
-  });
-
-  function pretty_time_string(num) {
-    return ( num < 10 ? "0" : "" ) + num;
-  }
-
-  var start = new Date;    
-  setInterval(function() {
-    var seconds = Math.floor((new Date - start) / 1000);   
-    seconds = pretty_time_string(seconds);
-    var currentTimeString = "Timer: " + seconds + " secs";
-    $('.timer').text(currentTimeString);
-``}, 1000);
-    */
 });
+

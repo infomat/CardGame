@@ -1,75 +1,110 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Game of Concentration</title>
     <link rel="stylesheet" href="css/style.css">
-	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
     <script src="js/card.js"></script>
   </head>
   <body>
-    <section>
-    <h1>Game of Concentration</h1>
-    <p class='timer'>Timer: 0 secs</p>
-      <ul id="image_list">
-        <li class='card'>
-            <a href="images/back.png" title="card1">
-                <img src="images/back.png" alt="card1">
-            </a>
-        </li>
-        <li class='card'>
-            <a href="images/back.png" title="card2">
-                <img src="images/back.png" alt="card2">
-            </a>
-        </li>
-        <li class='card'>
-            <a href="images/back.png" title="card3">
-                <img src="images/back.png" alt="card3">
-            </a>
-        </li>
-        <li class='card'>
-            <a href="images/back.png" title="card4">
-                <img src="images/back.png" alt="card4">
-            </a>
-        </li>
-        <li class='card'>
-            <a href="images/back.png" title="card5">
-                <img src="images/back.png" alt="card5">
-            </a>
-        </li>
-        <li class='card'>
-            <a href="images/back.png" title="card6">
-                <img src="images/back.png" alt="card6">
-            </a>
-        </li>
-        <li class='card'>
-            <a href="images/back.png" title="card7">
-                <img src="images/back.png" alt="card7">
-            </a>
-        </li>
-        <li class='card'>
-            <a href="images/back.png" title="card8">
-                <img src="images/back.png" alt="card8">
-            </a>
-        </li>
-        <li class='card'>
-            <a href="images/back.png" title="card9">
-                <img src="images/back.png" alt="card9">
-            </a>
-        </li>
-        <li class='card'>
-            <a href="images/back.png" title="card10">
-                <img src="images/back.png" alt="card10">
-            </a>
-        </li>
-      </ul>
-      <div class="clear"></div>
-      <h2 id="caption">Guess</h2>
-      <p>
-        <img class="deckimage" src="images/back.png" alt="back1" id="image1">
-        <img class="deckimage" src="images/back.png" alt="back2" id="image2">
-      </p>
-      <button id="reset">Reset</button>
-    </section>
+    <div class="container-fluid">
+        <section>
+        <div class="jumbotron">
+            <h1>Game of Concentration</h1>
+            <p>Try to match two cards within shortest time.</p>
+            <p>Time is already going on....</p>
+        </div>
+
+        <p id='timer'>Timer: 00 secs</p>
+          <ul id="image_list">
+            <li class='card'>
+                <a href="#" title="card1">
+                    <img src="images/back.png" alt="card1">
+                </a>
+            </li>
+            <li class='card'>
+                <a href="#" title="card2">
+                    <img src="images/back.png" alt="card2">
+                </a>
+            </li>
+            <li class='card'>
+                <a href="#" title="card3">
+                    <img src="images/back.png" alt="card3">
+                </a>
+            </li>
+            <li class='card'>
+                <a href="#" title="card4">
+                    <img src="images/back.png" alt="card4">
+                </a>
+            </li>
+            <li class='card'>
+                <a href="#" title="card5">
+                    <img src="images/back.png" alt="card5">
+                </a>
+            </li>
+            <li class='card'>
+                <a href="#" title="card6">
+                    <img src="images/back.png" alt="card6">
+                </a>
+            </li>
+            <li class='card'>
+                <a href="#" title="card7">
+                    <img src="images/back.png" alt="card7">
+                </a>
+            </li>
+            <li class='card'>
+                <a href="#" title="card8">
+                    <img src="images/back.png" alt="card8">
+                </a>
+            </li>
+            <li class='card'>
+                <a href="#" title="card9">
+                    <img src="images/back.png" alt="card9">
+                </a>
+            </li>
+            <li class='card'>
+                <a href="#" title="card10">
+                    <img src="images/back.png" alt="card10">
+                </a>
+            </li>
+          </ul>
+          <div class="clear">
+              <p id="caption">Guess?</p>
+              <div class="container" id="deckimages">
+                <img class="deckimage" src="images/back.png" alt="back1" id="image1">
+                <img class="deckimage" src="images/back.png" alt="back2" id="image2">
+              </div>
+              <p>
+                <button id="shuffle" type="button" class="btn btn-primary" aria-label="Right Align">
+                  <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Shuffle
+                </button>
+              </p>
+          </div>
+        </section>
+    </div>
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Congratulation!!!</h4>
+          </div>
+          <div class="modal-body">
+            <p></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

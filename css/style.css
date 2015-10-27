@@ -1,6 +1,19 @@
 .clear {
   clear: both;
 }
+.jumbotron {
+    padding: 0.3em;
+}
+
+.jumbotron h1 {
+  color: #803643;
+  font-family: 'Shift', sans-serif;
+  font-weight: bold;
+}
+
+.jumbotron p {
+  color: #91A276;
+}
 
 ul {
   list-style: none;
@@ -8,12 +21,28 @@ ul {
 
 #image_list li {
   float: left;
+  margin: 0.2em;
 }
 
 #image_list img {
-  width: 60px;
+  width: 70px;
+  height: 100px
 }
 
 .deckimage {
-   width: 120px;  
+   width: 120px;
+   margin: 0.5em 0.5em;
+}
+
+#caption {
+    margin-top: 10em;
+}
+
+#shuffles {
+    text-align: center;
+}
+
+#shuffle {
+    clear: both;
+    margin: 2em auto;
 }
