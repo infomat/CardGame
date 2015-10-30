@@ -86,11 +86,11 @@ $(document).ready(function() {
     
 /******************************************************************************************/
     function loadCard() {
-        //Make 5 random from 40 and store at array with two
+        //Make 5 random from 40 and store at array with twice
         for (i = 0; i < numDeck; i++){
             do {
                 randNum = Math.floor(Math.random() * totalImage);
-            } while (checkDuplcate(i-1,randNum))
+            } while ((checkDuplcate(i-1,randNum)) && (i!=0))
             cardNumber[i] = randNum;
             cardNumber[i+numDeck] = randNum;
         }
@@ -98,9 +98,10 @@ $(document).ready(function() {
         shuffleNum(numDeck*2);
     }
     
+	//to check from 0 to i-1, condition should have equal
     function checkDuplcate(count,randNum )
     {
-        for (var j = 0; j < count; j++){
+        for (var j = 0; j <= count; j++){
             if (cardNumber[j] == randNum) return true;
         }
         return false;
